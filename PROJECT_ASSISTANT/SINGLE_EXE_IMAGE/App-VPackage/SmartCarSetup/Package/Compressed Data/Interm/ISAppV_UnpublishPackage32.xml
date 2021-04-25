@@ -1,0 +1,1 @@
+<EntryPoint Assembly="AppV5_MSI" Resource="4097" Type="AppVv5ClientPS.AppVv5ClientPSHelper" Method="msiAppvV5Uninstall" Return="-"><Param>MsiHandle</Param><Param>[APPVPATH]</Param><Param>[PACKAGEGUID]</Param><Param>[VERSIONGUID]</Param></EntryPoint>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+This is your sample dynamic deployment configuration.  Use this to override machine wide and per user
+elements within your sequenced package.  The document is pre-filled with data from your sequenced package.
+Customize the document to fit your needs before adding your package.
+-->
+<DeploymentConfiguration PackageId="0d0ebb87-fd7f-4be5-a506-a65b0e017b8e" DisplayName="SmartCarSetup" IgnorableNamespaces="" xmlns="http://schemas.microsoft.com/appv/2010/deploymentconfiguration">
+  <!--            
+
+  Per User Configuration
+      
+  -->
+  <UserConfiguration>
+    <Subsystems>
+      <!--OVERRIDE BEHAVIOR OF MANIFEST AND CONFIGURATION FILES 
+  Integration Subsystems can be enabled and disabled independently of the content.
+  Thus if Shortcuts are enabled, The client will use the shortcuts contained within
+  the manifest by default.
+		
+  Each Integration Subsystem can contain an <Extensions /> node. If this child element
+  is present, the client will ignore the content in the Manifest file for that subsystem
+  and only use the content in the configuration file.
+		
+  e.g. for the shortcuts subsystem, 
+  (A)
+  if the user defined this in either the dynamic or deployment config file: 		
+	  <Shortcuts  Enabled="true">
+		  <Extensions>
+			  ...
+		  </Extensions>
+	  </Shortcuts>
+		
+  Content in the manifest will be ignored.
+		
+  (B)
+  IF the user defined only this: 		
+	  <Shortcuts  Enabled="true"/>
+  Then the content in the Manifest will be integrated during publishing.
+		
+  (C)
+  note that if the user defines this:
+	  <Shortcuts  Enabled="true">
+		  <Extensions/>
+	  </Shortcuts>
+		
+  Then all the Shortcuts within the manifest will still be ignored.
+  There will be no shortcuts integrated.-->
+      <!--
+      
+      Shortcuts
+      
+      -->
+      <Shortcuts Enabled="true">
+				<Extensions>
+					<Extension Category="AppV.Shortcut">
+						<Shortcut>
+							<File>[{Common Programs}]\Geek Force School\SmartCarSetup\Smart Car Control for Windows.lnk</File>
+							<Target>[{AppVPackageRoot}]\Smart Car.exe</Target>
+							<Icon>[{AppVPackageRoot}]\Smart Car.exe.0.ico</Icon>
+							<Arguments/>
+							<WorkingDirectory>[{AppVPackageRoot}]\</WorkingDirectory>
+							<ShowCommand>1</ShowCommand>
+							<ApplicationId>[{AppVPackageRoot}]\Smart Car.exe</ApplicationId>
+						</Shortcut>
+					</Extension>
+					<Extension Category="AppV.Shortcut">
+						<Shortcut>
+							<File>[{Common Desktop}]\Smart Car Control for Windows.lnk</File>
+							<Target>[{AppVPackageRoot}]\Smart Car.exe</Target>
+							<Icon>[{AppVPackageRoot}]\Smart Car.exe.0.ico</Icon>
+							<Arguments/>
+							<WorkingDirectory>[{AppVPackageRoot}]\</WorkingDirectory>
+							<ShowCommand>1</ShowCommand>
+							<ApplicationId>[{AppVPackageRoot}]\Smart Car.exe</ApplicationId>
+						</Shortcut>
+					</Extension>
+				</Extensions>
+			</Shortcuts>
+      <!--
+      
+      File Type Associations      
+      
+      -->
+      <FileTypeAssociations Enabled="true"/>
+      <!--
+      
+      URL Protocols
+      
+      -->
+      <URLProtocols Enabled="true"/>
+      <!--
+      
+      Software Clients
+      
+      -->
+      <SoftwareClients Enabled="true"/>
+      <!--
+      
+      App Paths
+      
+      -->
+      <AppPaths Enabled="true"/>
+      <!--
+      
+      COM
+      
+      -->
+      
+      <!--
+      
+      Objects
+      
+      -->
+      <Objects Enabled="true"/>
+      <!--
+      
+      Virtual Registry
+      
+      -->
+      <Registry Enabled="true">
+        <!--
+          
+          <Include>
+            <Key Path="\REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Foo">
+              <Value Type="REG_SZ" Name="Bar" Data="NewValue"/>
+            </Key>
+            <Key Path="\REGISTRY\USER\[{AppVCurrentUserSID}]\Software\EmptyKey"/>
+          </Include>
+          
+        -->
+        <!--
+          
+          <Delete>
+            <Key Path="\REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Foo\BarDelete"/>
+          </Delete>
+          
+        -->
+      </Registry>
+      <!--
+      
+      Virtual File System
+      
+      -->
+      <FileSystem Enabled="true"/>
+      <!--
+      
+      Fonts
+      
+      -->
+      <Fonts Enabled="true"/>
+      <!--
+      
+      Environment Variables
+      
+      -->
+      <EnvironmentVariables Enabled="true"/>
+      <!--
+      
+      Services
+      
+      -->
+      <Services Enabled="true"/>
+    <COM Mode="Isolated">
+				<IntegratedCOMAttributes InProcessEnabled="false" OutOfProcessEnabled="true"/>
+			</COM>
+		</Subsystems>
+    <!--
+      
+    Applications
+      
+    -->
+    <Applications>
+			<Application Enabled="true" Id="[{AppVPackageRoot}]\Smart Car.exe">
+				<VisualElements>
+					<Name>Smart Car Control for Windows</Name>
+					<Version>1.0.0.0</Version>
+				</VisualElements>
+			</Application>
+		</Applications>
+    <!-- User Scripts Example - customize and uncomment to use user scripts -->
+    <!--
+      
+    <UserScripts>
+      <StartProcess RunInVirtualEnvironment="true">
+        <Path>VFS\ProgramFilesX86\App\dosomething.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="true"/>
+        <ApplicationId>[{AppVPackageRoot}]\Contoso\ContosoApp.EXE</ApplicationId>
+      </StartProcess>
+      <ExitProcess>
+        <Path>VFS\ProgramFilesX86\App\UnDoSomething.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="false"/>
+        <ApplicationId>[{AppVPackageRoot}]\Contoso\ContosoApp.EXE</ApplicationId>
+      </ExitProcess>
+      
+      <StartVirtualEnvironment  RunInVirtualEnvironment="true">
+        <Path>[{AppVPackageRoot}]\VFS\ProgramFilesX86\App\DoSomething.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="true"/>
+      </StartVirtualEnvironment>
+    
+      <TerminateVirtualEnvironment>
+        <Path>[{AppVPackageRoot}]\VFS\ProgramFilesX86\App\UnDoSomething.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+      <Wait RollbackOnError="false"/>
+      </TerminateVirtualEnvironment>
+      <PublishPackage>
+        <Path>\\server\share\foobar.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="true" Timeout="30"/>
+      </PublishPackage>
+      <UnpublishPackage>
+        <Path>\\server\share\barfoo.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="false" Timeout="30"/>
+      </UnpublishPackage>
+    </UserScripts>
+    
+    -->
+  </UserConfiguration>
+  <!--
+            
+  Machine Wide Configuration
+      
+  -->
+  <MachineConfiguration>
+    <!--
+            
+    Product Source URL Opt Out
+      
+    -->
+    <ProductSourceURLOptOut Enabled="true"/>
+    <Subsystems>
+      <!--
+              
+      Machine Wide Virtual Registry
+      
+      -->
+      <Registry>
+        <!--
+        <Include>
+          <Key Path="\REGISTRY\Machine\Software\Foo">
+          <Value Type="REG_SZ" Name="Bar" Data="Baz"/>
+          </Key>
+          <Key Path="\REGISTRY\Machine\Software\EmptyKey"/>
+        </Include>
+        -->
+        <!--
+        <Delete>
+          <Key  Path="\REGISTRY\Machine\Software\Foo\BarDelete"/>
+        </Delete>
+        -->
+      </Registry>
+    </Subsystems>
+    <!-- Machine Scripts Example - customize and uncomment to use machine scripts -->
+    <!--
+    <MachineScripts>
+      <PublishPackage>
+        <Path>\\server\share\foobar.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="true" Timeout="30"/>
+      </PublishPackage>
+      <UnpublishPackage>
+        <Path>\\server\share\barfoo.exe</Path>
+        <Arguments>-WithArgs</Arguments>
+        <Wait RollbackOnError="false" Timeout="30"/>
+      </UnpublishPackage>
+      
+      <AddPackage>
+        <Path>[{PackageRoot}]\VFS\ProgramFilesX86\App\InstallDriver.exe</Path>
+        <Arguments>-DriverName Printer-Visibility Northamerica</Arguments>
+        <Wait RollbackOnError="true" Timeout="30"/>
+      </AddPackage>
+      <RemovePackage>
+        <Path>[{PackageRoot}]\VFS\ProgramFilesX86\App\InstallDriver.exe</Path>
+        <Arguments>-Uninstall</Arguments>
+        <Wait RollbackOnError="false" Timeout="60"/>
+      </RemovePackage>
+    </MachineScripts>
+    -->
+    <!--
+      
+      Terminate Child Processes
+      
+      -->
+    <TerminateChildProcesses>
+      <!--
+            <Application Path="[{AppVPackageRoot}]\Contoso\ContosoApp.EXE" />
+          -->
+    </TerminateChildProcesses>
+  </MachineConfiguration>
+</DeploymentConfiguration>

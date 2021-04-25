@@ -1,0 +1,1 @@
+<EntryPoint Assembly="AppV5_MSI" Resource="4097" Type="AppVv5ClientPS.AppVv5ClientPSHelper" Method="msiAppvV5Install" Return="-"><Param>MsiHandle</Param><Param>[APPVPATH]</Param><Param>[PERMACHINE]</Param><Param>[APPLYDEPLOYMENTCONFIG]</Param><Param>[APPLYUSERCONFIG]</Param><Param>[MOUNT]</Param><Param>[PACKAGEGUID]</Param><Param>[VERSIONGUID]</Param></EntryPoint>
